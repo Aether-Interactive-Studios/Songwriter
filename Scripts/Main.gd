@@ -10,7 +10,7 @@ var chorus = "Chorus"
 var verse2 = "Verse2"
 var bridge = "Bridge"
 var x
-var space = "\n\n"
+var space = "\n"
 
 
 var data = {
@@ -160,7 +160,15 @@ func see():
 	
 func default(json):
 	
-	$TextEdit.text = json["Verse"] + space + json["Pre-Chorus"] + space + json["Chorus"] + space + json["Verse2"] + space + json["Chorus"] + space + json["Pre-Chorus"] + space + json["Chorus"] + space + json["Bridge"] + space + json["Chorus"] 
+	$TextEdit.text = (
+	 "Verse: \n" +   json["Verse"] + space +
+	 "\nPre-Chorus: \n" + json["Pre-Chorus"] + space +
+	 "\nChorus: \n" + json["Chorus"] + space +
+	 "\nVerse: \n" + json["Verse2"] + space +
+	"\nPre-Chorus: \n" + json["Pre-Chorus"] + space +
+	"\nChorus: \n" + json["Chorus"] + space +	 
+	 "\nBridge: \n" + json["Bridge"] + space +
+	 "\nChorus: \n" + json["Chorus"] )
 	
 func _on_Master_pressed():
 	see()
@@ -170,6 +178,8 @@ func _on_Master_pressed():
 		savefile.open("res://Lyrics.json", File.READ)
 		var json = parse_json(savefile.get_as_text())
 		default(json)
+		
+		
 		
 	
 	pass # Replace with function body.

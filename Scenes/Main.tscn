@@ -14,19 +14,14 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_left = -1.41422
+margin_top = -2.82843
+margin_right = 3543.59
+margin_bottom = 6920.17
 color = Color( 0.12549, 0.117647, 0.117647, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TextEdit" parent="." instance=ExtResource( 3 )]
-visible = false
-margin_left = 29.0
-margin_top = 62.0
-margin_right = 984.0
-margin_bottom = 551.0
 
 [node name="Save" type="Button" parent="."]
 visible = false
@@ -91,11 +86,88 @@ __meta__ = {
 }
 
 [node name="Master" type="Button" parent="."]
-margin_left = 743.0
-margin_right = 878.0
+margin_left = 879.734
+margin_right = 1014.73
 margin_bottom = 42.0
 text = "Master"
-[connection signal="text_changed" from="TextEdit" to="." method="_on_TextEdit_text_changed"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 71.0
+margin_right = 1010.0
+margin_bottom = 574.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tabs" type="Tabs" parent="."]
+margin_left = 172.0
+margin_top = 186.0
+margin_right = 659.0
+margin_bottom = 450.0
+
+[node name="TextEdit" parent="." instance=ExtResource( 3 )]
+margin_left = 78.0
+margin_top = 110.0
+margin_right = 906.0
+margin_bottom = 499.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+visible = false
+margin_top = -3.0
+margin_right = 1015.0
+margin_bottom = 600.0
+use_hidden_tabs_for_min_size = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -812.0
+margin_bottom = -560.0
+
+[node name="TextEdit2" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TextEdit3" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TextEdit4" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TextEdit5" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -4.0
+margin_bottom = -4.0
 [connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Verse" to="." method="_on_Verse_pressed"]
 [connection signal="pressed" from="Pre-Chorus" to="." method="_on_PreChorus_pressed"]
@@ -103,3 +175,4 @@ text = "Master"
 [connection signal="pressed" from="Verse2" to="." method="_on_Verse2_pressed"]
 [connection signal="pressed" from="Bridge" to="." method="_on_Bridge_pressed"]
 [connection signal="pressed" from="Master" to="." method="_on_Master_pressed"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_TextEdit_text_changed"]
