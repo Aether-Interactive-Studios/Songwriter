@@ -17,6 +17,9 @@ __meta__ = {
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.12549, 0.117647, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextEdit" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -45,8 +48,8 @@ __meta__ = {
 }
 
 [node name="Pre-Chorus" type="Button" parent="."]
-margin_left = 101.0
-margin_right = 283.0
+margin_left = 97.0
+margin_right = 279.0
 margin_bottom = 42.0
 text = "Pre-Chorus"
 __meta__ = {
@@ -54,8 +57,8 @@ __meta__ = {
 }
 
 [node name="Chorus" type="Button" parent="."]
-margin_left = 287.0
-margin_right = 401.0
+margin_left = 279.0
+margin_right = 393.0
 margin_bottom = 42.0
 text = "Chorus"
 __meta__ = {
@@ -63,14 +66,14 @@ __meta__ = {
 }
 
 [node name="Verse2" type="Button" parent="."]
-margin_left = 405.0
-margin_right = 502.0
+margin_left = 393.0
+margin_right = 490.0
 margin_bottom = 42.0
 text = "Verse"
 
 [node name="Bridge" type="Button" parent="."]
-margin_left = 506.0
-margin_right = 620.0
+margin_left = 490.0
+margin_right = 604.0
 margin_bottom = 42.0
 text = "Bridge"
 __meta__ = {
@@ -86,6 +89,12 @@ margin_bottom = 429.124
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Master" type="Button" parent="."]
+margin_left = 743.0
+margin_right = 878.0
+margin_bottom = 42.0
+text = "Master"
 [connection signal="text_changed" from="TextEdit" to="." method="_on_TextEdit_text_changed"]
 [connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Verse" to="." method="_on_Verse_pressed"]
@@ -93,3 +102,4 @@ __meta__ = {
 [connection signal="pressed" from="Chorus" to="." method="_on_Chorus_pressed"]
 [connection signal="pressed" from="Verse2" to="." method="_on_Verse2_pressed"]
 [connection signal="pressed" from="Bridge" to="." method="_on_Bridge_pressed"]
+[connection signal="pressed" from="Master" to="." method="_on_Master_pressed"]

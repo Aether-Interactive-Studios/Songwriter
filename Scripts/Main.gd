@@ -7,15 +7,17 @@ extends Control
 var verse = "Verse"
 var prechorus = "Pre-Chorus"
 var chorus = "Chorus"
-var verse2 = "Verse 2"
+var verse2 = "Verse2"
 var bridge = "Bridge"
 var x
+var space = "\n\n"
+
 
 var data = {
 	"Verse" : "",
 	"Pre-Chorus" : "",
 	"Chorus" : "",
-	"Verse 2" : "",
+	"Verse2" : "",
 	"Bridge": ""
 }
 
@@ -27,10 +29,13 @@ func _ready():
 	var lyrics = File.new()
 	
 	if not lyrics.file_exists("res://Lyrics.json"):
+		
 		lyrics.open("res://Lyrics.json", File.WRITE)
 		lyrics.store_string(to_json(data))
 		lyrics.close()
-	
+	else:
+		lyrics.open("res://Lyrics.json", File.READ)
+		data = parse_json(lyrics.get_as_text())
 	
 
 
@@ -90,49 +95,51 @@ func _on_Bridge_pressed():
 	pass # Replace with function body.
 
 func _data():
+#	var idx = data[x]
+#	print (idx)
+#	var last = idx.right(idx.length() - 1)
+#	if last == "":
+#		idx.substring(0,idx.length() - 1)
+#	print(idx)
 	data[x] = $TextEdit.text
 
 func _on_Save_pressed():
-	print(x)
-	
-	data[x] = $TextEdit.text
+#	print(x)
+#
+#	data[x] = $TextEdit.text
+#	var file = File.new()
+#	file.open("res://Lyrics.json", File.WRITE)
+#	file.store_string(to_json(data))
+#	file.close()
+	match x: 
+
+		verse:
+
+			_data()
+
+		verse2:
+
+			_data()	
+
+
+
+		chorus:
+			_data()
+
+
+		prechorus:
+			_data()
+
+
+		bridge:
+			_data()
+
 	var file = File.new()
 	file.open("res://Lyrics.json", File.WRITE)
 	file.store_string(to_json(data))
 	file.close()
-#	match x: 
-#
-#		verse:
-#
-#			_data()
-#
-##			var file = File.new()
-#
-##			file.open("res://Lyrics.json", File.WRITE)
-##			file.store_string(to_json(data))
-##			file.close()
-#
-#
-#
-#		chorus:
-#			_data()
-#
-#
-#		prechorus:
-#			_data()
-#
-#
-#		bridge:
-#			_data()
-			
-			
-			
-#			var file = File.new()
-#			file.open("res://Bridge.txt", File.WRITE)
-#			file.store_string($TextEdit.text)
-#			file.close()
-			
-				
+
+
 	
 	pass # Replace with function body.
 
@@ -151,3 +158,18 @@ func see():
 	$TextEdit.visible = true
 	pass
 	
+func default(json):
+	
+	$TextEdit.text = json["Verse"] + space + json["Pre-Chorus"] + space + json["Chorus"] + space + json["Verse2"] + space + json["Chorus"] + space + json["Pre-Chorus"] + space + json["Chorus"] + space + json["Bridge"] + space + json["Chorus"] 
+	
+func _on_Master_pressed():
+	see()
+
+	var savefile = File.new()
+	if savefile.file_exists("res://Lyrics.json"):
+		savefile.open("res://Lyrics.json", File.READ)
+		var json = parse_json(savefile.get_as_text())
+		default(json)
+		
+	
+	pass # Replace with function body.
