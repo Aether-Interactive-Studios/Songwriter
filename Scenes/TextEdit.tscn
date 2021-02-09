@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="TextEdit" type="TextEdit"]
+margin_left = 33.0
+margin_top = 75.0
+margin_right = 988.0
+margin_bottom = 564.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

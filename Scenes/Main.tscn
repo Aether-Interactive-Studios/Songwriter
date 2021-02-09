@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Themes/DefTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/TextEdit.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.12549, 0.117647, 0.117647, 1 )
+
+[node name="TextEdit" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = 29.0
+margin_top = 62.0
+margin_right = 984.0
+margin_bottom = 551.0
+
+[node name="Save" type="Button" parent="."]
+visible = false
+margin_left = 762.741
+margin_top = 473.39
+margin_right = 927.741
+margin_bottom = 534.39
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Verse" type="Button" parent="."]
+margin_right = 97.0
+margin_bottom = 42.0
+text = "Verse"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pre-Chorus" type="Button" parent="."]
+margin_left = 101.0
+margin_right = 283.0
+margin_bottom = 42.0
+text = "Pre-Chorus"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chorus" type="Button" parent="."]
+margin_left = 287.0
+margin_right = 401.0
+margin_bottom = 42.0
+text = "Chorus"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Verse2" type="Button" parent="."]
+margin_left = 405.0
+margin_right = 502.0
+margin_bottom = 42.0
+text = "Verse"
+
+[node name="Bridge" type="Button" parent="."]
+margin_left = 506.0
+margin_right = 620.0
+margin_bottom = 42.0
+text = "Bridge"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+margin_left = 839.734
+margin_top = 211.124
+margin_right = 1499.73
+margin_bottom = 429.124
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_changed" from="TextEdit" to="." method="_on_TextEdit_text_changed"]
+[connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Verse" to="." method="_on_Verse_pressed"]
+[connection signal="pressed" from="Pre-Chorus" to="." method="_on_PreChorus_pressed"]
+[connection signal="pressed" from="Chorus" to="." method="_on_Chorus_pressed"]
+[connection signal="pressed" from="Verse2" to="." method="_on_Verse2_pressed"]
+[connection signal="pressed" from="Bridge" to="." method="_on_Bridge_pressed"]
