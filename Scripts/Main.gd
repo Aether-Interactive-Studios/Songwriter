@@ -26,8 +26,8 @@ var data = {
 	}
 	
 	
-func loadsaves():
-	x
+#func loadsaves():
+#	x
 	
 func addnewfile():
 	$LineEdit.visible = true
