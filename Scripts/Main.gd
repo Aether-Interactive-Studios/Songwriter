@@ -10,9 +10,10 @@ var x
 var cn = ":\n"
 var n2 = "\n\n"
 
-
+var storage = "user://"
 var space = "\n"
-var location = "res://Lyrics.json"
+var location = storage + "Default.json"
+var songs = storage + "songs.json"
 
 
 var data = {
@@ -23,6 +24,31 @@ var data = {
 	"Bridge": "",
 	"Master": ""
 	}
+	
+	
+func loadsaves():
+	x
+	
+func addnewfile(item):
+	$LineEdit.visible = true
+	
+	
+func _on_item_pressed(id):
+	var item = $MenuButton.get_popup().get_item_text(id)
+	if item == "Add Song":
+		addnewfile(item)
+	else:
+		location = storage + item + ".json"
+	
+
+	newfile()
+	
+	pass
+	
+	
+	
+	
+	
 func read():
 	var lyrics = File.new()
 	lyrics.open(location, File.READ)
@@ -31,15 +57,62 @@ func read():
 
 	for keys in data.keys():
 		if not keys == Master:
-			print(data[keys])
+			
 			var node = get_node("TabContainer/"+keys)
 			node.text = data[keys]
 			
 
 	lyrics.close()
-func _ready():
-
+	
+	
+func newfile():
+	data = {
+	"Verse" : "",
+	"Pre-Chorus" : "",
+	"Chorus" : "",
+	"Verse 2" : "",
+	"Bridge": "",
+	"Master": ""
+	}
+	
 	var lyrics = File.new()
+
+	if not lyrics.file_exists(location):
+
+		lyrics.open(location, File.WRITE)
+		lyrics.store_string(to_json(data))
+		lyrics.close()
+		read()
+		_master_()
+
+	else:
+		read()
+		_master_()
+	
+	
+func _ready():
+	
+	var lyrics = File.new()
+	$MenuButton.get_popup().add_item("Add Song")
+	$MenuButton.get_popup().add_item("Default")
+	
+	
+	
+	lyrics.open(songs, File.READ)
+	if lyrics.file_exists(songs):
+		var songinfo = parse_json(lyrics.get_as_text())
+		
+		
+		for keys in songinfo.keys():
+			if not keys == "Default":
+				$MenuButton.get_popup().add_item(keys)
+		
+
+	
+	
+	$MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
+
+	
 
 	if not lyrics.file_exists(location):
 
@@ -100,3 +173,30 @@ func _on_Master_text_changed():
 	
 	pass # Replace with function body.
 
+
+
+func _on_MenuButton_pressed():
+	
+	pass # Replace with function body.
+
+
+func _on_LineEdit_focus_entered():
+	$LineEdit.text = ""
+	pass # Replace with function body.
+
+
+func _on_LineEdit_text_entered(new_text):
+	location = storage + new_text + ".json"
+	$MenuButton.get_popup().add_item(new_text)
+	var file = File.new()
+	var toJson = "," + "\"" +new_text + "\"" + ": \"\" } "
+	if not file.file_exists(songs):
+		file.open(songs, File.WRITE)
+		file.store_string("{\"Default\" : \"\" }")
+
+	file.open(songs, File.READ_WRITE)
+	file.seek_end(-1)
+	file.store_string(toJson)
+	newfile()
+	$LineEdit.visible = false
+	pass # Replace with function body.

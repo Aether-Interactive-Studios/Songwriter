@@ -12,6 +12,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1908.0
+margin_bottom = 906.0
+color = Color( 0.337255, 0.411765, 0.576471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Old" type="ColorRect" parent="."]
 visible = false
 margin_left = -1.41422
@@ -24,8 +32,8 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 tab_align = 0
 drag_to_rearrange_enabled = true
 __meta__ = {
@@ -33,11 +41,10 @@ __meta__ = {
 }
 
 [node name="Verse" type="TextEdit" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 show_line_numbers = true
@@ -48,7 +55,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 show_line_numbers = true
@@ -59,7 +66,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 show_line_numbers = true
@@ -70,7 +77,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 show_line_numbers = true
@@ -81,7 +88,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 show_line_numbers = true
@@ -92,15 +99,39 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 54.0
+margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
 readonly = true
 show_line_numbers = true
 smooth_scrolling = true
+
+[node name="MenuButton" type="MenuButton" parent="."]
+anchor_left = 0.936
+anchor_right = 0.936
+margin_left = -0.46405
+margin_right = 65.5359
+margin_bottom = 55.0
+text = "File"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 73.0
+margin_right = -52.0
+margin_bottom = -418.0
+text = "What should the new file be called?"
 [connection signal="text_changed" from="TabContainer/Verse" to="." method="_on_Verse_text_changed"]
 [connection signal="text_changed" from="TabContainer/Pre-Chorus" to="." method="_on_PreChorus_text_changed"]
 [connection signal="text_changed" from="TabContainer/Chorus" to="." method="_on_Chorus_text_changed"]
 [connection signal="text_changed" from="TabContainer/Verse 2" to="." method="_on_Verse_2_text_changed"]
 [connection signal="text_changed" from="TabContainer/Bridge" to="." method="_on_Bridge_text_changed"]
 [connection signal="text_changed" from="TabContainer/Master" to="." method="_on_Master_text_changed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="focus_entered" from="LineEdit" to="." method="_on_LineEdit_focus_entered"]
+[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
