@@ -14,8 +14,9 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -2.18188
+margin_top = -0.707092
 margin_right = 1905.82
-margin_bottom = 906.0
+margin_bottom = 905.293
 color = Color( 0.243137, 0.368627, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -119,24 +120,26 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 67.0
-margin_right = -4.0
-margin_bottom = -466.0
+margin_right = -226.0
+margin_bottom = -470.0
 text = "What should the new song be called?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="."]
-visible = false
-margin_left = 814.985
-margin_top = 75.1504
-margin_right = 1006.99
-margin_bottom = 130.15
+anchor_left = 0.796
+anchor_top = 0.125
+anchor_right = 0.984
+anchor_bottom = 0.217
+margin_left = -1.10406
+margin_top = -8.0
+margin_right = 0.383972
+margin_bottom = -0.200012
 text = "Enter"
 __meta__ = {
 "_edit_use_anchors_": false

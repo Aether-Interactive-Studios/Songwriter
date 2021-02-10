@@ -211,6 +211,7 @@ func _on_LineEdit_text_entered(new_text):
 	file.store_string(toJson)
 	newfile()
 	$LineEdit.visible = false
+	$Button.visible = false
 	pass # Replace with function body.
 
 
