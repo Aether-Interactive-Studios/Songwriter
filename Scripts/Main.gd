@@ -9,6 +9,7 @@ var Master = "Master"
 var x
 var cn = ":\n"
 var n2 = "\n\n"
+var item = "Default"
 
 var storage = "user://"
 var space = "\n"
@@ -29,20 +30,24 @@ var data = {
 #func loadsaves():
 #	x
 	
-func addnewfile():
-	$LineEdit.visible = true
+func make_file_dialog_visible():
+	$Screen.visible = true
+	$Screen/LineEdit.grab_focus()
+
+	
 	
 	
 func _on_item_pressed(id):
-	var item = $MenuButton.get_popup().get_item_text(id)
+	item = $MenuButton.get_popup().get_item_text(id)
 	if item == "Save as Txt":
 		$FileDialog.popup()
 	elif item == "Add Song":
-		$LineEdit.text = "What should the new song be called?"
-		$Button.visible = true
-		addnewfile()
+		
+		
+		make_file_dialog_visible()
 	else:
 		location = storage + item + ".json"
+		
 	
 	
 	newfile()
@@ -153,6 +158,7 @@ func _master_():
 	
 
 	$"TabContainer/Master".text = (
+		item + "\n" +
 		verse + cn + data[verse] + n2 +
 		prechorus + cn + data[prechorus] + n2 +
 		chorus + cn + data[chorus] + n2 +
@@ -194,7 +200,7 @@ func _on_MenuButton_pressed():
 
 
 func _on_LineEdit_focus_entered():
-	$LineEdit.text = ""
+	
 	pass # Replace with function body.
 
 
@@ -210,8 +216,10 @@ func _on_LineEdit_text_entered(new_text):
 	file.seek_end(-1)
 	file.store_string(toJson)
 	newfile()
-	$LineEdit.visible = false
-	$Button.visible = false
+	
+	$Screen.visible = false
+
+	
 	pass # Replace with function body.
 
 
@@ -225,12 +233,12 @@ func _on_LineEdit_text_entered(new_text):
 #	pass # Replace with function body.
 
 
-func _on_Button_pressed():	
-	$Button.visible = true
-	_on_LineEdit_text_entered($LineEdit.text)
+func _on_Button_pressed():
+	
+	_on_LineEdit_text_entered($Screen/LineEdit.text)
 	print("$LineEdit.text")
-	$Button.visible = false
-	$LineEdit.visible = false
+	$Screen.visible = false
+
 	pass # Replace with function body.
 
 
@@ -244,3 +252,8 @@ func _on_FileDialog_file_selected(path):
 	txt.store_string($"TabContainer/Master".text)
 	pass # Replace with function body.
 
+
+
+func _on_Cancel_pressed():
+	$Screen.visible = false
+	pass # Replace with function body.

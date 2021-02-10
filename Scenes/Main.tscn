@@ -13,10 +13,12 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -2.18188
-margin_top = -0.707092
-margin_right = 1905.82
-margin_bottom = 905.293
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = -1.0
+margin_right = 1180.0
+margin_bottom = 362.0
 color = Color( 0.243137, 0.368627, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -110,37 +112,77 @@ show_line_numbers = true
 smooth_scrolling = true
 
 [node name="MenuButton" type="MenuButton" parent="."]
-anchor_right = 0.713
-margin_left = 958.0
-margin_right = 293.888
-margin_bottom = 55.0
+anchor_left = 0.936
+anchor_right = 1.0
+anchor_bottom = 0.092
+margin_left = -0.46405
+margin_bottom = -0.200005
 text = "File"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="Screen" type="TextEdit" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 69.0
+margin_right = 1024.0
+margin_bottom = 581.0
+readonly = true
+
+[node name="LineEdit" type="LineEdit" parent="Screen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 67.0
-margin_right = -226.0
-margin_bottom = -470.0
-text = "What should the new song be called?"
+margin_left = 15.0
+margin_top = 79.0
+margin_right = -189.0
+margin_bottom = -357.0
+rect_pivot_offset = Vector2( 335, 31.5 )
+align = 1
+clear_button_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="Question" type="LineEdit" parent="Screen"]
+anchor_right = 0.924
+anchor_bottom = 0.144
+margin_left = 3.83191
+margin_top = 4.51366
+margin_right = -1.80011
+margin_bottom = -0.214333
+rect_pivot_offset = Vector2( 335, 31.5 )
+text = "What should the new song be called?"
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Screen"]
 anchor_left = 0.796
 anchor_top = 0.125
 anchor_right = 0.984
 anchor_bottom = 0.217
-margin_left = -1.10406
-margin_top = -8.0
-margin_right = 0.383972
-margin_bottom = -0.200012
+margin_left = 37.6719
+margin_top = 15.0
+margin_right = 10.288
+margin_bottom = 45.896
 text = "Enter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="Screen"]
+anchor_left = 0.796
+anchor_top = 0.125
+anchor_right = 0.984
+anchor_bottom = 0.217
+margin_left = 141.672
+margin_top = -58.0
+margin_right = -1.71204
+margin_bottom = -47.104
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -148,10 +190,10 @@ __meta__ = {
 [node name="FileDialog" type="FileDialog" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
-margin_top = 23.0
-margin_right = -71.0
-margin_bottom = -2.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = -63.0
+margin_bottom = -21.0
 resizable = true
 access = 2
 current_dir = "/Godot Games/TextEdit"
@@ -166,7 +208,7 @@ __meta__ = {
 [connection signal="text_changed" from="TabContainer/Bridge" to="." method="_on_Bridge_text_changed"]
 [connection signal="text_changed" from="TabContainer/Master" to="." method="_on_Master_text_changed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
-[connection signal="focus_entered" from="LineEdit" to="." method="_on_LineEdit_focus_entered"]
-[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="text_entered" from="Screen/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="Screen/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Screen/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
