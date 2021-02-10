@@ -7,9 +7,6 @@ var verse2 = "Verse 2"
 var bridge = "Bridge"
 var Master = "Master"
 var x
-var cn = ":\n"
-var n2 = "\n\n"
-
 
 var space = "\n"
 var location = "res://Lyrics.json"
@@ -34,9 +31,9 @@ func read():
 			print(data[keys])
 			var node = get_node("TabContainer/"+keys)
 			node.text = data[keys]
-			
+			$"TabContainer/Master".text += keys + ":\n" + data[keys] + "\n\n"
 
-	lyrics.close()
+
 func _ready():
 
 	var lyrics = File.new()
@@ -50,9 +47,8 @@ func _ready():
 
 	else:
 		read()
-		
-	_master_()
-	
+
+
 func main(part):
 	var node = get_node("TabContainer/"+part)
 	var text = node.text
@@ -60,23 +56,16 @@ func main(part):
 	var lyrics = File.new()
 	lyrics.open(location, File.WRITE)
 	lyrics.store_string(to_json(data))
-	_master_()
 
 
 func _master_():
-	
+	var text 
 
-	$"TabContainer/Master".text = (
-		verse + cn + data[verse] + n2 +
-		prechorus + cn + data[prechorus] + n2 +
-		chorus + cn + data[chorus] + n2 +
-		verse2 + cn + data[verse2] + n2 +
-		prechorus + cn + data[prechorus] + n2 +
-		chorus + cn + data[chorus] + n2 +
-		bridge + cn + data[bridge] + n2+
-		chorus + cn + data[chorus]
-		
-	)
+	for keys in data.keys():
+		text = keys + data[keys] + "\n"
+		print(text)
+
+	$"TabContainer/Master".text = text
 
 
 
@@ -97,6 +86,10 @@ func _on_Bridge_text_changed():
 	main(bridge)
 	pass # Replace with function body.
 func _on_Master_text_changed():
-	
+	main(Master)
 	pass # Replace with function body.
 
+
+func _on_TabContainer_tab_changed(_tab):
+
+	pass # Replace with function body.
