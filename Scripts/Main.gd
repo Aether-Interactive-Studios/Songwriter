@@ -54,7 +54,7 @@ func read():
 	lyrics.open(location, File.READ)
 	data = parse_json(lyrics.get_as_text())
 
-
+	
 	for keys in data.keys():
 		if not keys == Master:
 			

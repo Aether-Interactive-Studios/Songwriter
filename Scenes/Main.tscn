@@ -107,10 +107,9 @@ show_line_numbers = true
 smooth_scrolling = true
 
 [node name="MenuButton" type="MenuButton" parent="."]
-anchor_left = 0.936
-anchor_right = 0.936
-margin_left = -0.46405
-margin_right = 65.5359
+anchor_right = 0.713
+margin_left = 958.0
+margin_right = 293.888
 margin_bottom = 55.0
 text = "File"
 __meta__ = {
