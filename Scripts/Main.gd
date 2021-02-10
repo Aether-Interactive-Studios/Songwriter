@@ -1,5 +1,5 @@
 extends Control
-
+var buttonHovered 
 var verse = "Verse"
 var prechorus = "Pre-Chorus"
 var chorus = "Chorus"
@@ -29,18 +29,22 @@ var data = {
 func loadsaves():
 	x
 	
-func addnewfile(item):
+func addnewfile():
 	$LineEdit.visible = true
 	
 	
 func _on_item_pressed(id):
 	var item = $MenuButton.get_popup().get_item_text(id)
-	if item == "Add Song":
-		addnewfile(item)
+	if item == "Save as Txt":
+		$FileDialog.popup()
+	elif item == "Add Song":
+		$LineEdit.text = "What should the new song be called?"
+		$Button.visible = true
+		addnewfile()
 	else:
 		location = storage + item + ".json"
 	
-
+	
 	newfile()
 	
 	pass
@@ -94,11 +98,13 @@ func _ready():
 	
 	var lyrics = File.new()
 	$MenuButton.get_popup().add_item("Add Song")
+	$MenuButton.get_popup().add_item("Save as Txt")
 	$MenuButton.get_popup().add_item("Default")
 	
 	
 	
 	lyrics.open(songs, File.READ)
+	
 	if lyrics.file_exists(songs):
 		var songinfo = parse_json(lyrics.get_as_text())
 		
@@ -106,7 +112,12 @@ func _ready():
 		for keys in songinfo.keys():
 			if not keys == "Default":
 				$MenuButton.get_popup().add_item(keys)
+	else:
 		
+		lyrics.open(songs, File.WRITE)
+		lyrics.store_string("{\"Default\" : \"\" }")
+	
+	lyrics.close()
 
 	
 	
@@ -125,6 +136,8 @@ func _ready():
 		read()
 		
 	_master_()
+	
+	
 	
 func main(part):
 	var node = get_node("TabContainer/"+part)
@@ -186,13 +199,12 @@ func _on_LineEdit_focus_entered():
 
 
 func _on_LineEdit_text_entered(new_text):
+	print(new_text)
 	location = storage + new_text + ".json"
 	$MenuButton.get_popup().add_item(new_text)
 	var file = File.new()
-	var toJson = "," + "\"" +new_text + "\"" + ": \"\" } "
-	if not file.file_exists(songs):
-		file.open(songs, File.WRITE)
-		file.store_string("{\"Default\" : \"\" }")
+	var toJson = "," + "\"" +new_text + "\"" + ": \"\" }"
+
 
 	file.open(songs, File.READ_WRITE)
 	file.seek_end(-1)
@@ -200,3 +212,34 @@ func _on_LineEdit_text_entered(new_text):
 	newfile()
 	$LineEdit.visible = false
 	pass # Replace with function body.
+
+
+
+
+#func _on_LineEdit_focus_exited():
+#
+#	$LineEdit.visible = false
+#
+#	$Button.visible = false
+#	pass # Replace with function body.
+
+
+func _on_Button_pressed():	
+	$Button.visible = true
+	_on_LineEdit_text_entered($LineEdit.text)
+	print("$LineEdit.text")
+	$Button.visible = false
+	$LineEdit.visible = false
+	pass # Replace with function body.
+
+
+
+func _on_FileDialog_file_selected(path):
+	_master_()
+	print(data.Verse)
+	print('/')
+	var txt = File.new()
+	txt.open(path+".txt", File.WRITE )
+	txt.store_string($"TabContainer/Master".text)
+	pass # Replace with function body.
+

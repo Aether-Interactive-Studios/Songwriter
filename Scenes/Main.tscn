@@ -13,9 +13,10 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1908.0
+margin_left = -2.18188
+margin_right = 1905.82
 margin_bottom = 906.0
-color = Color( 0.337255, 0.411765, 0.576471, 1 )
+color = Color( 0.243137, 0.368627, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,6 +48,7 @@ margin_left = 4.0
 margin_top = 67.0
 margin_right = -4.0
 margin_bottom = -4.0
+syntax_highlighting = true
 show_line_numbers = true
 smooth_scrolling = true
 
@@ -120,11 +122,40 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 73.0
-margin_right = -52.0
-margin_bottom = -418.0
-text = "What should the new file be called?"
+margin_left = 4.0
+margin_top = 67.0
+margin_right = -4.0
+margin_bottom = -466.0
+text = "What should the new song be called?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = 814.985
+margin_top = 75.1504
+margin_right = 1006.99
+margin_bottom = 130.15
+text = "Enter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = 23.0
+margin_right = -71.0
+margin_bottom = -2.0
+resizable = true
+access = 2
+current_dir = "/Godot Games/TextEdit"
+current_path = "/Godot Games/TextEdit/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="text_changed" from="TabContainer/Verse" to="." method="_on_Verse_text_changed"]
 [connection signal="text_changed" from="TabContainer/Pre-Chorus" to="." method="_on_PreChorus_text_changed"]
 [connection signal="text_changed" from="TabContainer/Chorus" to="." method="_on_Chorus_text_changed"]
@@ -133,4 +164,7 @@ text = "What should the new file be called?"
 [connection signal="text_changed" from="TabContainer/Master" to="." method="_on_Master_text_changed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="focus_entered" from="LineEdit" to="." method="_on_LineEdit_focus_entered"]
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_LineEdit_focus_exited"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
