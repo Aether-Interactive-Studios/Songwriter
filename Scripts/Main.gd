@@ -51,7 +51,7 @@ func _on_item_pressed(id):
 	
 	
 	newfile()
-	
+	_master_()
 	pass
 	
 	
@@ -155,20 +155,20 @@ func main(part):
 
 
 func _master_():
-	
-
-	$"TabContainer/Master".text = (
-		item + "\n" +
-		verse + cn + data[verse] + n2 +
-		prechorus + cn + data[prechorus] + n2 +
-		chorus + cn + data[chorus] + n2 +
-		verse2 + cn + data[verse2] + n2 +
-		prechorus + cn + data[prechorus] + n2 +
-		chorus + cn + data[chorus] + n2 +
-		bridge + cn + data[bridge] + n2+
-		chorus + cn + data[chorus]
-		
-	)
+	if not item == "Add Song":
+		print(item)
+		$"TabContainer/Master".text = (
+			item + "\n" +
+			verse + cn + data[verse] + n2 +
+			prechorus + cn + data[prechorus] + n2 +
+			chorus + cn + data[chorus] + n2 +
+			verse2 + cn + data[verse2] + n2 +
+			prechorus + cn + data[prechorus] + n2 +
+			chorus + cn + data[chorus] + n2 +
+			bridge + cn + data[bridge] + n2+
+			chorus + cn + data[chorus]
+			
+		)
 
 
 
@@ -216,6 +216,7 @@ func _on_LineEdit_text_entered(new_text):
 	file.seek_end(-1)
 	file.store_string(toJson)
 	newfile()
+	item = new_text
 	
 	$Screen.visible = false
 
@@ -236,7 +237,8 @@ func _on_LineEdit_text_entered(new_text):
 func _on_Button_pressed():
 	
 	_on_LineEdit_text_entered($Screen/LineEdit.text)
-	print("$LineEdit.text")
+	item = $Screen/LineEdit.text
+	_master_()
 	$Screen.visible = false
 
 	pass # Replace with function body.
