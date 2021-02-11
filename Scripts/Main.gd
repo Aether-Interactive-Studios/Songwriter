@@ -205,12 +205,13 @@ func _on_LineEdit_focus_entered():
 
 
 func _on_LineEdit_text_entered(new_text):
+	item = new_text
 	print(new_text)
 	location = storage + new_text + ".json"
 	$MenuButton.get_popup().add_item(new_text)
 	var file = File.new()
 	var toJson = "," + "\"" +new_text + "\"" + ": \"\" }"
-
+	
 
 	file.open(songs, File.READ_WRITE)
 	file.seek_end(-1)
@@ -237,7 +238,7 @@ func _on_LineEdit_text_entered(new_text):
 func _on_Button_pressed():
 	
 	_on_LineEdit_text_entered($Screen/LineEdit.text)
-	item = $Screen/LineEdit.text
+	
 	_master_()
 	$Screen.visible = false
 
