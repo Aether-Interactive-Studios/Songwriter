@@ -1,11 +1,13 @@
 extends Control
 var buttonHovered 
+var intro = "Intro"
 var verse = "Verse"
 var prechorus = "Pre-Chorus"
 var chorus = "Chorus"
 var verse2 = "Verse 2"
 var bridge = "Bridge"
 var Master = "Master"
+var outro = "Outro"
 var x
 var cn = ":\n"
 var n2 = "\n\n"
@@ -18,12 +20,14 @@ var songs = storage + "songs.json"
 
 
 var data = {
+	"Intro" : "",
 	"Verse" : "",
 	"Pre-Chorus" : "",
 	"Chorus" : "",
 	"Verse 2" : "",
 	"Bridge": "",
-	"Master": ""
+	"Master": "",
+	"Outro" : ""
 	}
 	
 	
@@ -35,7 +39,7 @@ func make_file_dialog_visible():
 	$Screen/LineEdit.grab_focus()
 
 	
-	
+
 	
 func _on_item_pressed(id):
 	item = $MenuButton.get_popup().get_item_text(id)
@@ -62,8 +66,10 @@ func read():
 	var lyrics = File.new()
 	lyrics.open(location, File.READ)
 	data = parse_json(lyrics.get_as_text())
-
-	
+	if not data.has("Intro"):
+		data["Intro"] = ""
+	if not data.has("Outro"):
+		data["Outro"] = ""
 	for keys in data.keys():
 		if not keys == Master:
 			
@@ -71,17 +77,22 @@ func read():
 			node.text = data[keys]
 			
 
+		
+			
+
 	lyrics.close()
 	
 	
 func newfile():
 	data = {
+	"Intro": "",
 	"Verse" : "",
 	"Pre-Chorus" : "",
 	"Chorus" : "",
 	"Verse 2" : "",
 	"Bridge": "",
-	"Master": ""
+	"Master": "",
+	"Outro": ""
 	}
 	
 	var lyrics = File.new()
@@ -151,14 +162,20 @@ func main(part):
 	var lyrics = File.new()
 	lyrics.open(location, File.WRITE)
 	lyrics.store_string(to_json(data))
+	
+		
 	_master_()
 
 
 func _master_():
 	if not item == "Add Song":
-		print(item)
+		
+		
+		
+		
 		$"TabContainer/Master".text = (
 			item + "\n" +
+			intro + cn + data[intro] + n2 +
 			verse + cn + data[verse] + n2 +
 			prechorus + cn + data[prechorus] + n2 +
 			chorus + cn + data[chorus] + n2 +
@@ -166,13 +183,16 @@ func _master_():
 			prechorus + cn + data[prechorus] + n2 +
 			chorus + cn + data[chorus] + n2 +
 			bridge + cn + data[bridge] + n2+
-			chorus + cn + data[chorus]
+			chorus + cn + data[chorus] + n2+
+			outro + cn + data[outro]
 			
 		)
 
 
 
-
+func _on_Intro_text_changed():
+	main(intro)
+	pass # Replace with function body.
 func _on_Verse_text_changed():
 	main(verse)
 	pass # Replace with function body.
@@ -188,6 +208,11 @@ func _on_Verse_2_text_changed():
 func _on_Bridge_text_changed():
 	main(bridge)
 	pass # Replace with function body.
+
+func _on_Outro_text_changed():
+	main(outro)
+	pass # Replace with function body.	
+	
 func _on_Master_text_changed():
 	
 	pass # Replace with function body.
@@ -206,7 +231,7 @@ func _on_LineEdit_focus_entered():
 
 func _on_LineEdit_text_entered(new_text):
 	item = new_text
-	print(new_text)
+	
 	location = storage + new_text + ".json"
 	$MenuButton.get_popup().add_item(new_text)
 	var file = File.new()
@@ -248,8 +273,8 @@ func _on_Button_pressed():
 
 func _on_FileDialog_file_selected(path):
 	_master_()
-	print(data.Verse)
-	print('/')
+	
+	
 	var txt = File.new()
 	txt.open(path+".txt", File.WRITE )
 	txt.store_string($"TabContainer/Master".text)
@@ -260,3 +285,9 @@ func _on_FileDialog_file_selected(path):
 func _on_Cancel_pressed():
 	$Screen.visible = false
 	pass # Replace with function body.
+
+
+
+
+
+

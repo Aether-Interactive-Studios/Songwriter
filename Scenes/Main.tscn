@@ -36,15 +36,29 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.999
+anchor_bottom = 0.999
+margin_right = 0.279907
+margin_bottom = -0.280029
 tab_align = 0
 drag_to_rearrange_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Intro" type="TextEdit" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 67.0
+margin_right = -4.0
+margin_bottom = -4.0
+syntax_highlighting = true
+show_line_numbers = true
+smooth_scrolling = true
+
 [node name="Verse" type="TextEdit" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -99,6 +113,18 @@ margin_bottom = -4.0
 show_line_numbers = true
 smooth_scrolling = true
 
+[node name="Outro" type="TextEdit" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 67.0
+margin_right = -4.0
+margin_bottom = -4.0
+syntax_highlighting = true
+show_line_numbers = true
+smooth_scrolling = true
+
 [node name="Master" type="TextEdit" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
@@ -112,11 +138,12 @@ show_line_numbers = true
 smooth_scrolling = true
 
 [node name="MenuButton" type="MenuButton" parent="."]
-anchor_left = 0.936
-anchor_right = 1.0
-anchor_bottom = 0.092
-margin_left = -0.46405
-margin_bottom = -0.200005
+anchor_left = 0.986
+anchor_right = 0.986
+margin_left = -74.4543
+margin_top = 4.0
+margin_right = 8.18567
+margin_bottom = 59.84
 text = "File"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -201,11 +228,13 @@ current_path = "/Godot Games/TextEdit/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="text_changed" from="TabContainer/Intro" to="." method="_on_Intro_text_changed"]
 [connection signal="text_changed" from="TabContainer/Verse" to="." method="_on_Verse_text_changed"]
 [connection signal="text_changed" from="TabContainer/Pre-Chorus" to="." method="_on_PreChorus_text_changed"]
 [connection signal="text_changed" from="TabContainer/Chorus" to="." method="_on_Chorus_text_changed"]
 [connection signal="text_changed" from="TabContainer/Verse 2" to="." method="_on_Verse_2_text_changed"]
 [connection signal="text_changed" from="TabContainer/Bridge" to="." method="_on_Bridge_text_changed"]
+[connection signal="text_changed" from="TabContainer/Outro" to="." method="_on_Outro_text_changed"]
 [connection signal="text_changed" from="TabContainer/Master" to="." method="_on_Master_text_changed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="text_entered" from="Screen/LineEdit" to="." method="_on_LineEdit_text_entered"]
