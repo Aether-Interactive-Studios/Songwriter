@@ -228,6 +228,7 @@ current_path = "/Godot Games/TextEdit/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="text_changed" from="TabContainer/Intro" to="." method="_on_Intro_text_changed"]
 [connection signal="text_changed" from="TabContainer/Verse" to="." method="_on_Verse_text_changed"]
 [connection signal="text_changed" from="TabContainer/Pre-Chorus" to="." method="_on_PreChorus_text_changed"]
